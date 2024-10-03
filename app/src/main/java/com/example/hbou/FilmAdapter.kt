@@ -5,39 +5,41 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class FilmAdapter(private val filmList: List<Film>) :
-    RecyclerView.Adapter<FilmAdapter.FilmViewHolder>() {
-
-    class FilmViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val titleTextView: TextView = view.findViewById(R.id.textViewTitle)
-        val genreTextView: TextView = view.findViewById(R.id.textViewGenre)
-        val yearTextView: TextView = view.findViewById(R.id.textViewYear)
-        val coverImageView = view.findViewById<ImageView>(R.id.imageViewCover)
-    }
-
+class FilmAdapter(private val filmList: List<Film>) : RecyclerView.Adapter<FilmAdapter.FilmViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_film, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_film, parent, false)
         return FilmViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: FilmViewHolder, position: Int) {
         val film = filmList[position]
-        holder.titleTextView.text = film.title
-        holder.genreTextView.text = film.genre
-        holder.yearTextView.text = film.year.toString()
+        holder.bind(film)
 
-        // Carregar a imagem de capa usando Glide
-        Glide.with(holder.itemView.context)
-            .load(film.imageUrl) // URL da imagem
-            .placeholder(R.drawable.placeholder_image) // Imagem padrão enquanto carrega
-            .error(R.drawable.error_image) // Imagem de erro caso falhe
-            .into(holder.coverImageView) // Insere a imagem no ImageView
+        holder.itemView.setOnClickListener {
+            val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
+            val filmDetailsDialog = FilmDetailsDialogFragment.newInstance(film)
+            filmDetailsDialog.show(fragmentManager, "filmDetailsDialog")
+        }
     }
 
-    override fun getItemCount() = filmList.size
+    override fun getItemCount(): Int = filmList.size
+
+    class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val title = itemView.findViewById<TextView>(R.id.textViewTitle)
+        private val genre = itemView.findViewById<TextView>(R.id.textViewGenre)
+        private val year = itemView.findViewById<TextView>(R.id.textViewYear)
+        private val cover = itemView.findViewById<ImageView>(R.id.imageViewCover)
+
+        fun bind(film: Film) {
+            title.text = film.title
+            genre.text = film.genre
+            year.text = film.year.toString()
+            Glide.with(itemView.context).load(film.imageUrl).into(cover)
+        }
+    }
 }
