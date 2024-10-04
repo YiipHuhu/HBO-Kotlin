@@ -4,24 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:elevation="4dp"
+    android:background="@android:color/transparent"
+    android:elevation="8dp"
     app:cardBackgroundColor="#02183F"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="6dp">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
+        <!-- Capa do Filme com sombra -->
         <ImageView
             android:id="@+id/imageViewFilmCover"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
             android:contentDescription="Capa do Filme"
+            android:elevation="4dp"
             android:scaleType="centerCrop" />
 
+        <!-- Título do Filme -->
         <TextView
             android:id="@+id/textViewFilmTitle"
             android:layout_width="wrap_content"
@@ -33,49 +38,93 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
+        <!-- Divisória customizada com cor -->
         <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="?android:attr/listDivider" />
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccentDark" />
 
+        <!-- Ano e Avaliação do Filme -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <TextView
                 android:id="@+id/textViewFilmYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_calendar"
+                android:drawablePadding="8dp"
                 android:fontFamily="@font/sora_medium"
-                android:text="Ano de Lançamento"
+                android:text="2022"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewFilmRating"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:drawablePadding="8dp"
                 android:fontFamily="@font/sora_medium"
-                android:gravity="right"
-                android:text="Nota: 8.5"
+                android:gravity="end"
+                android:text="8.5"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:drawableRightCompat="@drawable/ic_star" />
         </LinearLayout>
 
+        <!-- Descrição do Filme -->
         <TextView
             android:id="@+id/textViewFilmDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/sora_medium"
-            android:text="Descrição do Filme"
+            android:lineSpacingExtra="4dp"
+            android:text="Uma breve descrição sobre o filme, sua história, gênero e mais informações relevantes."
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
+
+        <!-- Botões de Ação (Assistir Trailer, Compartilhar) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonWatchTrailer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccentDark"
+                android:drawableStart="@drawable/ic_play"
+                android:drawablePadding="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Assistir Trailer"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/buttonShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/colorAccentDark"
+                android:drawableStart="@drawable/ic_share"
+                android:drawablePadding="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Compartilhar"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

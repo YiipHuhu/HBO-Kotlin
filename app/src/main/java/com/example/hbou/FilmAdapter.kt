@@ -24,6 +24,7 @@ class FilmAdapter(private val filmList: List<Film>) : RecyclerView.Adapter<FilmA
             val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
             val filmDetailsDialog = FilmDetailsDialogFragment.newInstance(film)
             filmDetailsDialog.show(fragmentManager, "filmDetailsDialog")
+            filmDetailsDialog.dialog?.window?.attributes?.windowAnimations = R.style.FadeInAnimation
         }
     }
 
