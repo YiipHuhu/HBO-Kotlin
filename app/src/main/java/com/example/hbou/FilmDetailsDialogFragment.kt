@@ -28,8 +28,14 @@ class FilmDetailsDialogFragment : DialogFragment() {
         view.findViewById<TextView>(R.id.textViewFilmYear).text = film.year.toString()
         view.findViewById<TextView>(R.id.textViewFilmRating).text = "Nota: ${film.rating}"
         view.findViewById<TextView>(R.id.textViewFilmDescription).text = film.description
-        Glide.with(this).load(film.imageUrl).into(view.findViewById(R.id.imageViewFilmCover))
+
+        Glide.with(this)
+            .load(film.imageUrl)
+            .placeholder(R.drawable.placeholder_image) // Imagem padrão enquanto carrega
+            .error(R.drawable.error_image) // Imagem de erro caso falhe
+            .into(view.findViewById(R.id.imageViewFilmCover))
     }
+
 
     companion object {
         fun newInstance(film: Film): FilmDetailsDialogFragment {

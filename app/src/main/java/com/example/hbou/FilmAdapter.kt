@@ -40,7 +40,11 @@ class FilmAdapter(private val filmList: List<Film>) : RecyclerView.Adapter<FilmA
             title.text = film.title
             genre.text = film.genre
             year.text = film.year.toString()
-            Glide.with(itemView.context).load(film.imageUrl).into(cover)
+            Glide.with(itemView.context)
+                .load(film.imageUrl)
+                .placeholder(R.drawable.placeholder_image) // Imagem padrão enquanto carrega
+                .error(R.drawable.error_image) // Imagem de erro caso falhe
+                .into(cover)
         }
     }
 }
