@@ -4,23 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:background="@android:color/transparent"
-    android:elevation="8dp"
-    app:cardBackgroundColor="#02183F"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="10dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@android:color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@drawable/gradient_background"
         android:padding="16dp">
 
         <!-- Capa do Filme com sombra -->
         <ImageView
             android:id="@+id/imageViewFilmCover"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="160dp"
             android:layout_gravity="center"
             android:contentDescription="Capa do Filme"
             android:elevation="4dp"
